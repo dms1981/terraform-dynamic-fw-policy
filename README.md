@@ -1,3 +1,42 @@
+# terraform-dynamic-fw-policy
+Dynamically create an AWS Network Firewall policy &amp; rule group from a source json file
+
+## Example source json
+```json
+{
+  "default_open": {
+    "action": "PASS",
+    "source_ip": "0.0.0.0/0",
+    "destination_ip": "0.0.0.0/0",
+    "destination_port": "ANY",
+    "protocol": "IP"
+  }
+}
+```
+
+## Example terraform
+```hcl
+locals {
+  example_rules = jsondecode(file("./example_rules.json"))
+}
+
+resource "aws_networkfirewall_firewall" "example" {
+  name                = "example-firewall"
+  firewall_policy_arn = module.fw-rules.fw_policy_arn
+  vpc_id              = aws_vpc.example.id
+  subnet_mapping {
+    subnet_id = aws_subnet.example.id
+  }
+}
+
+module "fw-rules" {
+  source = "github.com/dms1981/terraform-dynamic-fw-policy"
+  fw_policy_name    = "example-policy"
+  fw_rulegroup_name = "example-rulegroup"
+  rules             = local.firewall_rules
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
