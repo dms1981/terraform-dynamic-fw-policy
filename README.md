@@ -76,5 +76,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_fw_policy_arn"></a> [fw\_policy\_arn](#output\_fw\_policy\_arn) | n/a |
 <!-- END_TF_DOCS -->
