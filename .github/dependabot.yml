@@ -7,7 +7,7 @@ updates:
     labels:
       - "actions"
       - "dependencies"
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: "terraform"
     directory: "/"
     schedule:
       interval: "daily"
