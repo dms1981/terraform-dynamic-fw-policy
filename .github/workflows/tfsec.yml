@@ -15,4 +15,5 @@ jobs:
       - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
-          soft-fail: true
+          soft_fail: true
+          additional_args: --concise_output --gif
