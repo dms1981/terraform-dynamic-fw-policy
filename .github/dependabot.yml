@@ -1,6 +1,16 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"
-    directory: ".github/"
+    directory: ".github/workflows"
     schedule:
       interval: "daily"
+    labels:
+      - "actions"
+      - "dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "terraform"
+      - "dependencies"
