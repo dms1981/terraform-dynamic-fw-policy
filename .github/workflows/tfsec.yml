@@ -13,7 +13,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
       - name: tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+        uses: aquasecurity/tfsec-action@v1.0.2
         with:
           soft_fail: true
           additional_args: --concise-output
