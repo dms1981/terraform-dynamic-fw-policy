@@ -8,12 +8,21 @@ jobs:
   tfsec:
     name: tfsec
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
-      - name: tfsec
+
+      - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
-          soft_fail: true
-          additional_args: --concise-output
+          additional_args: --format sarif --out tfsec.sarif
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: tfsec.sarif

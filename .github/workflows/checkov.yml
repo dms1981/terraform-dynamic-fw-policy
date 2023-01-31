@@ -18,4 +18,10 @@ jobs:
         with:
           directory: ./
           framework: terraform
-          quiet: true
+          output_file_path: ./checkov.sarif
+          output_format: sarif
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ./checkov.sarif
